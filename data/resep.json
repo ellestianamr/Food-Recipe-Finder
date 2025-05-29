@@ -1,0 +1,5 @@
+[
+  { "title": "Telur Dadar", "ingredients": ["telur", "garam", "bawang merah"] },
+  { "title": "Nasi Goreng", "ingredients": ["nasi", "telur", "kecap", "bawang putih"] },
+  { "title": "Indomie Goreng Spesial", "ingredients": ["mie instan", "telur", "sawi", "cabai"] }
+]
