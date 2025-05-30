@@ -1,5 +1,6 @@
 import json
 from logic.search import boolean_search
+from logic.ai_search import ai_search 
 
 def load_recipes(path="data/resep.json"):
     with open(path, "r", encoding="utf-8") as f:
@@ -10,12 +11,17 @@ def main():
     user_input = input("Masukkan bahan yang kamu punya (pisahkan dengan koma):\n> ")
     user_ingredients = [b.strip() for b in user_input.split(",")]
 
-    mode = input("Gunakan mode pencarian (AND/OR)? [default: OR]: ").strip().upper()
-    if mode not in ["AND", "OR"]:
-        mode = "OR"
-
-    recipes = load_recipes()
-    results = boolean_search(recipes, user_ingredients, mode=mode)
+    mode = input("Pilih mode pencarian - Boolean (B) atau AI (A)? [default: B]: ").strip().upper()
+    if mode == "A":
+        print("\n🔍 Menggunakan pencarian berbasis AI...")
+        recipes = load_recipes()
+        results = ai_search(recipes, user_ingredients)
+    else:
+        and_or = input("Gunakan mode Boolean (AND/OR)? [default: OR]: ").strip().upper()
+        if and_or not in ["AND", "OR"]:
+            and_or = "OR"
+        recipes = load_recipes()
+        results = boolean_search(recipes, user_ingredients, mode=and_or)
 
     if not results:
         print("\n❌ Tidak ditemukan resep yang cocok.")
